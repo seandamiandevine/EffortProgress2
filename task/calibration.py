@@ -104,6 +104,12 @@ def runCalibration(WIN, props=(0.1, 0.9), debug=False):
 		core.wait(COOLDOWN)
 		
 	V_ = [round(p*V,2) for p in props]
+
+	TXT.text = f'Moving forward, {V_[0]}V and {V_[1]}V shocks will be used throughout the experiment.'
+	TXT.draw()
+	WIN.flip()
+	event.waitKeys(keyList=['return'])
+
 	return output, V_, V
 
 
