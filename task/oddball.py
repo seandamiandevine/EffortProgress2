@@ -40,12 +40,12 @@ def runTask(WIN, id, sex, age, voltages, debug=False, _thisDir=os.getcwd()):
     
     # Set constants
     TEXTCOL     = [-1, -1, -1]                                                 # font colour
-    FONTH       = 1                                                            # font height
+    FONTH       = 0.1                                                          # font height
     STIMDIR     = 'stim/'                                                      # directory where oddball stimuli are
     UP, DOWN    = f'{STIMDIR}oddball_down.png', f'{STIMDIR}oddball_up.png'     # oddball stimuli
     PROGSTART   = [.8, .5]                                                     # where progress bar starts
-    FILLRATE    = 0.5 #if not debug else 1                                      # amount one correct responses fills up screen
-    PRESISTANCE = [0.005, 0.01]                                                # proportion of avg. practice RT for how fast bar fills per frame
+    FILLRATE    = 0.05 #if not debug else 1                                     # amount one correct responses fills up screen
+    PRESISTANCE = [0.0005, 0.001]                                              # proportion of avg. practice RT for how fast bar fills per frame
     PAIN        = voltages                                                     # amount of pain (in V.) -- from calibration phase
     NREP        = 2                                                            # number of repetitions for all combinations
     NPRAC       = 20 if not debug else 1                                       # number of practice trials
@@ -56,7 +56,6 @@ def runTask(WIN, id, sex, age, voltages, debug=False, _thisDir=os.getcwd()):
     PAINTIME    = 0.33                                                         # time for which shock is administered (s.)
     ERRTIME     = 1.5                                                          # time that error screens stay up (s.)
     ITI         = 2                                                            # block-to-block time (s.)
-    SCALE       = (WIN.size[0]/3024)*2                                         # scaling parameter for progress bar fill
 
     # initialize instructions
     INSTDIR     = f'instructions/instructions/'                             
@@ -64,15 +63,20 @@ def runTask(WIN, id, sex, age, voltages, debug=False, _thisDir=os.getcwd()):
     INSTPIC     = visual.ImageStim(WIN, image=f"{INSTDIR}Slide1.png")
 
     # initialize trial components
-    PROBE1      = visual.ImageStim(WIN, image=UP, pos=(-7.5,0))
+    PROBE1      = visual.ImageStim(WIN, image=UP, pos=(-.33,0))
     PROBE2      = visual.ImageStim(WIN, image=UP, pos=(0,0))
-    PROBE3      = visual.ImageStim(WIN, image=UP, pos=(7.5,0))
+    PROBE3      = visual.ImageStim(WIN, image=UP, pos=(.33,0))
     COUNTDOWN   = visual.TextStim(WIN, text='', height=3*FONTH, pos=(0,0), color='White')
-    FEEDBACK    = visual.TextStim(WIN, text='', height=3*FONTH, pos=(0,0), color='White', wrapWidth=30)
-    PAINFB      = visual.ImageStim(WIN, image=f'{STIMDIR}bolt.png', pos=(0,0), size=(10,10))
-    PROGBAR_OUT = visual.Rect(WIN, pos=(0,5), size=(20,2), lineColor='White', fillColor='White')
-    PROGBAR     = visual.Rect(WIN, pos=(0,PROGBAR_OUT.pos[1]), size=(0,PROGBAR_OUT.size[1]), fillColor='Red')
+    FEEDBACK    = visual.TextStim(WIN, text='', height=2*FONTH, pos=(0,0), color='White', wrapWidth=15*FONTH)
+    PAINFB      = visual.ImageStim(WIN, image=f'{STIMDIR}bolt.png', pos=(0,0), size=(.525,.75))
+    PROGBAR_OUT = visual.Rect(WIN, pos=(0,.33), size=(.7,.088), lineColor='white', lineWidth=10, fillColor='White')
     SHOCKLEVEL  = visual.TextStim(WIN, text='', height=FONTH, pos=(0,PROGBAR_OUT.pos[1]+2*FONTH), color='White')
+    PROGBAR     = visual.ShapeStim(WIN, fillColor='red', vertices=[[PROGBAR_OUT.pos[0]-PROGBAR_OUT.size[0]/2, PROGBAR_OUT.pos[1]-PROGBAR_OUT.size[1]/2],
+                                                                               [PROGBAR_OUT.pos[0]-PROGBAR_OUT.size[0]/2, PROGBAR_OUT.pos[1]+PROGBAR_OUT.size[1]/2],
+                                                                               [PROGBAR_OUT.pos[0]+PROGBAR_OUT.size[0]/2, PROGBAR_OUT.pos[1]+PROGBAR_OUT.size[1]/2],
+                                                                               [PROGBAR_OUT.pos[0]+PROGBAR_OUT.size[0]/2, PROGBAR_OUT.pos[1]-PROGBAR_OUT.size[1]/2]
+                                                                               ])
+    PROGBAR_START = PROGBAR.vertices
 
     # initialize effort/reward pairings
     CONDS       = [(r, pr, p) for r in range(NREP) for r in PRESISTANCE for pr in PROGSTART for p in PAIN]    
@@ -144,7 +148,6 @@ def runTask(WIN, id, sex, age, voltages, debug=False, _thisDir=os.getcwd()):
            INSTCOUNTER += 1
 
     # Main phase
-    # prac_rts     = prac_rts[prac_rts < 1.1] # remove long outliers
     scale_resist = 1/np.mean(prac_rts) + 0.2     # longer rts = less fill/s, shorter rts = more fill/s
     to           = 0
     for b in range(NBLOCKS):
@@ -152,26 +155,21 @@ def runTask(WIN, id, sex, age, voltages, debug=False, _thisDir=os.getcwd()):
 
         resist          = resist*scale_resist
         pfilled         = start
-        updated_size    = pfilled*PROGBAR_OUT.size[0] 
-        offset          = updated_size/SCALE
-        updated_pos     = PROGBAR_OUT.pos[0]+PROGBAR_OUT.size[0]/SCALE - offset
-        PROGBAR.pos[0]  = updated_pos
-        PROGBAR.size[0] = updated_size
-        PROGBAR         = visual.Rect(WIN, pos=PROGBAR.pos, size=PROGBAR.size, fillColor='Red')
+        v1              = PROGBAR_START[0][0] + (1-pfilled) * PROGBAR_OUT.size[0]
+        v2              = PROGBAR_START[1][0] + (1-pfilled) * PROGBAR_OUT.size[0]
+        vertices        = [[v1,PROGBAR_START[0][1]], [v2, PROGBAR_START[1][1]], PROGBAR_START[2], PROGBAR_START[3]]
+        PROGBAR         = visual.ShapeStim(WIN, fillColor='red', vertices=vertices)
         SHOCKLEVEL.text = f'SHOCK LEVEL = {int(pain*10)}V'
         t               = 0
         SHOCK           = False
 
-
         # display pain level
-        FEEDBACK.text      = f'If the red bar fills up, you will receive a {int(pain*10)}V shock!'
-        FEEDBACK.height    = 2*FONTH
+        FEEDBACK.text      = f'If the red bar fills up, you will receive a\n{int(pain*10)}V shock!'
         FEEDBACK.draw()
         WIN.flip()
         core.wait(2)
         WIN.flip()
         core.wait(0.5)
-        FEEDBACK.height = 3*FONTH
 
         # countdown 
         for i in range(3):
@@ -204,11 +202,15 @@ def runTask(WIN, id, sex, age, voltages, debug=False, _thisDir=os.getcwd()):
                 key_press = event.getKeys(keyList = KEYS)
 
                 # increment pain bar 
-                PROGBAR.pos[0]  -= time_passed*resist
-                PROGBAR.size[0] += time_passed*resist*SCALE
-                PROGBAR         = visual.Rect(WIN, pos=PROGBAR.pos, size=PROGBAR.size, fillColor='Red')
-                pfilled         = PROGBAR.size[0]/PROGBAR_OUT.size[0]
-                if pfilled > 1:
+                v1              = PROGBAR.vertices[0][0] - time_passed*resist
+                v2              = PROGBAR.vertices[1][0] - time_passed*resist
+                vertices        = [[v1,PROGBAR_START[0][1]], [v2, PROGBAR_START[1][1]], PROGBAR_START[2], PROGBAR_START[3]]
+                PROGBAR         = visual.ShapeStim(WIN, fillColor='red', vertices=vertices)
+                area_filled     = (vertices[1][1] - vertices[0][1]) * (vertices[2][0] - vertices[1][0])
+                area_full       = (PROGBAR_START[1][1] - PROGBAR_START[0][1]) * (PROGBAR_START[2][0] - PROGBAR_START[1][0])
+                pfilled         = area_filled/area_full
+
+                if pfilled >= 1:
                     SHOCK = True
                     break
 
@@ -239,10 +241,13 @@ def runTask(WIN, id, sex, age, voltages, debug=False, _thisDir=os.getcwd()):
             #     core.wait(ERRTIME)
             if acc==1: 
                 # update progress bar if correct response
-                PROGBAR.pos[0]  += FILLRATE
-                PROGBAR.size[0] -= FILLRATE*SCALE
-                PROGBAR         = visual.Rect(WIN, pos=PROGBAR.pos, size=PROGBAR.size, fillColor='Red')
-                pfilled         = PROGBAR.size[0]/PROGBAR_OUT.size[0]
+                v1              = PROGBAR.vertices[0][0] + FILLRATE
+                v2              = PROGBAR.vertices[1][0] + FILLRATE
+                vertices        = [[v1,PROGBAR_START[0][1]], [v2, PROGBAR_START[1][1]], PROGBAR_START[2], PROGBAR_START[3]]
+                PROGBAR         = visual.ShapeStim(WIN, fillColor='red', vertices=vertices)
+                area_filled     = (vertices[1][1] - vertices[0][1]) * (vertices[2][0] - vertices[1][0])
+                area_full       = (PROGBAR_START[1][1] - PROGBAR_START[0][1]) * (PROGBAR_START[2][0] - PROGBAR_START[1][0])
+                pfilled         = area_filled/area_full
                 
             t  += 1
             to += 1
@@ -281,9 +286,9 @@ def runTask(WIN, id, sex, age, voltages, debug=False, _thisDir=os.getcwd()):
     return None
 
 
-# WINSIZE     = [1920, 1080] #if not DEBUG else [1920//1.5, 1080//1.5]
-# WIN         = visual.Window(size=WINSIZE, fullscr=True,allowGUI=False, allowStencil=False,monitor='testMonitor', color=[-1,-1,-1], colorSpace='rgb',  blendMode='avg', useFBO=True, units='cm')
+WINSIZE     = [1920, 1080] #if not DEBUG else [1920//1.5, 1080//1.5]
+WIN         = visual.Window(size=WINSIZE, fullscr=True,allowGUI=False, allowStencil=False,monitor='testMonitor', color=[-1,-1,-1], colorSpace='rgb',  blendMode='avg', useFBO=True, units='norm')
 
-# print(WIN.size)
+print(WIN.size)
 
-# runTask(WIN, 999,'','',(0.1, 1), True)
+runTask(WIN, 999,'','',(0.1, 1), True)
