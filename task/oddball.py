@@ -286,9 +286,9 @@ def runTask(WIN, id, sex, age, voltages, debug=False, _thisDir=os.getcwd()):
     return None
 
 
-WINSIZE     = [1920, 1080] #if not DEBUG else [1920//1.5, 1080//1.5]
-WIN         = visual.Window(size=WINSIZE, fullscr=True,allowGUI=False, allowStencil=False,monitor='testMonitor', color=[-1,-1,-1], colorSpace='rgb',  blendMode='avg', useFBO=True, units='norm')
+# WINSIZE     = [1920, 1080] #if not DEBUG else [1920//1.5, 1080//1.5]
+# WIN         = visual.Window(size=WINSIZE, fullscr=True,allowGUI=False, allowStencil=False,monitor='testMonitor', color=[-1,-1,-1], colorSpace='rgb',  blendMode='avg', useFBO=True, units='norm')
 
-print(WIN.size)
+# print(WIN.size)
 
-runTask(WIN, 999,'','',(0.1, 1), True)
+# runTask(WIN, 999,'','',(0.1, 1), True)
