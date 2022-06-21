@@ -44,13 +44,13 @@ def runTask(WIN, id, sex, age, voltages, debug=False, _thisDir=os.getcwd()):
     STIMDIR     = 'stim/'                                                      # directory where oddball stimuli are
     UP, DOWN    = f'{STIMDIR}oddball_down.png', f'{STIMDIR}oddball_up.png'     # oddball stimuli
     PROGSTART   = [.8, .5]                                                     # where progress bar starts
-    FILLRATE    = 0.1 if not debug else 1                                      # amount one correct responses fills up screen
+    FILLRATE    = 0.5 #if not debug else 1                                      # amount one correct responses fills up screen
     PRESISTANCE = [0.005, 0.01]                                                # proportion of avg. practice RT for how fast bar fills per frame
     PAIN        = voltages                                                     # amount of pain (in V.) -- from calibration phase
     NREP        = 2                                                            # number of repetitions for all combinations
     NPRAC       = 20 if not debug else 1                                       # number of practice trials
     NBLOCKS     = len(PRESISTANCE)*len(PAIN)*len(PROGSTART)*NREP               # number of blocks
-    DEADLINE    = 10000 #0.75                                                  # response deadline
+    DEADLINE    = 0.75                                                         # response deadline
     KEYS        = ['q','w','e', 'escape']                                      # keys to make choices
     BLOCKTIME   = 1                                                            # time for which block feedback stays up (s.)
     PAINTIME    = 0.33                                                         # time for which shock is administered (s.)
@@ -68,7 +68,7 @@ def runTask(WIN, id, sex, age, voltages, debug=False, _thisDir=os.getcwd()):
     PROBE2      = visual.ImageStim(WIN, image=UP, pos=(0,0))
     PROBE3      = visual.ImageStim(WIN, image=UP, pos=(7.5,0))
     COUNTDOWN   = visual.TextStim(WIN, text='', height=3*FONTH, pos=(0,0), color='White')
-    FEEDBACK    = visual.TextStim(WIN, text='', height=3*FONTH, pos=(0,0), color='White')
+    FEEDBACK    = visual.TextStim(WIN, text='', height=3*FONTH, pos=(0,0), color='White', wrapWidth=30)
     PAINFB      = visual.ImageStim(WIN, image=f'{STIMDIR}bolt.png', pos=(0,0), size=(10,10))
     PROGBAR_OUT = visual.Rect(WIN, pos=(0,5), size=(20,2), lineColor='White', fillColor='White')
     PROGBAR     = visual.Rect(WIN, pos=(0,PROGBAR_OUT.pos[1]), size=(0,PROGBAR_OUT.size[1]), fillColor='Red')
@@ -145,7 +145,7 @@ def runTask(WIN, id, sex, age, voltages, debug=False, _thisDir=os.getcwd()):
 
     # Main phase
     # prac_rts     = prac_rts[prac_rts < 1.1] # remove long outliers
-    scale_resist = 1/np.mean(prac_rts)      # longer rts = less fill/s, shorter rts = more fill/s
+    scale_resist = 1/np.mean(prac_rts) + 0.2     # longer rts = less fill/s, shorter rts = more fill/s
     to           = 0
     for b in range(NBLOCKS):
         resist, start, pain = CONDS[b]
@@ -158,9 +158,20 @@ def runTask(WIN, id, sex, age, voltages, debug=False, _thisDir=os.getcwd()):
         PROGBAR.pos[0]  = updated_pos
         PROGBAR.size[0] = updated_size
         PROGBAR         = visual.Rect(WIN, pos=PROGBAR.pos, size=PROGBAR.size, fillColor='Red')
-        SHOCKLEVEL.text = f'SHOCK LEVEL = {int(pain*100)}V'
+        SHOCKLEVEL.text = f'SHOCK LEVEL = {int(pain*10)}V'
         t               = 0
         SHOCK           = False
+
+
+        # display pain level
+        FEEDBACK.text      = f'If the red bar fills up, you will receive a {int(pain*10)}V shock!'
+        FEEDBACK.height    = 2*FONTH
+        FEEDBACK.draw()
+        WIN.flip()
+        core.wait(2)
+        WIN.flip()
+        core.wait(0.5)
+        FEEDBACK.height = 3*FONTH
 
         # countdown 
         for i in range(3):
@@ -221,13 +232,12 @@ def runTask(WIN, id, sex, age, voltages, debug=False, _thisDir=os.getcwd()):
                 rt  = (dt.now() - start_time).total_seconds()
                 acc = 1 if key_press[0]==KEYS[odd_idx] else 0
 
-
-            if timeout:
-                FEEDBACK.text = 'Too Slow!'
-                FEEDBACK.draw()
-                WIN.flip()
-                core.wait(ERRTIME)
-            elif acc==1: 
+            # if timeout:
+            #     FEEDBACK.text = 'Too Slow!'
+            #     FEEDBACK.draw()
+            #     WIN.flip()
+            #     core.wait(ERRTIME)
+            if acc==1: 
                 # update progress bar if correct response
                 PROGBAR.pos[0]  += FILLRATE
                 PROGBAR.size[0] -= FILLRATE*SCALE
@@ -269,3 +279,11 @@ def runTask(WIN, id, sex, age, voltages, debug=False, _thisDir=os.getcwd()):
     event.waitKeys(keyList='x')
 
     return None
+
+
+# WINSIZE     = [1920, 1080] #if not DEBUG else [1920//1.5, 1080//1.5]
+# WIN         = visual.Window(size=WINSIZE, fullscr=True,allowGUI=False, allowStencil=False,monitor='testMonitor', color=[-1,-1,-1], colorSpace='rgb',  blendMode='avg', useFBO=True, units='cm')
+
+# print(WIN.size)
+
+# runTask(WIN, 999,'','',(0.1, 1), True)
