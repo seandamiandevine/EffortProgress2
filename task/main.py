@@ -29,13 +29,12 @@ print('Good luck!')
 WINSIZE     = [1920, 1080] #if not DEBUG else [1920//1.5, 1080//1.5]
 WINFULL     = True #if not DEBUG else False
 WINGUI      = False if not DEBUG else True
-WIN         = visual.Window(size=WINSIZE, fullscr=WINFULL,allowGUI=WINGUI, allowStencil=False,monitor='testMonitor', color=[-1,-1,-1], colorSpace='rgb',  blendMode='avg', useFBO=True, units='cm')
+WIN         = visual.Window(size=WINSIZE, fullscr=WINFULL,allowGUI=WINGUI, allowStencil=False,monitor='testMonitor', color=[-1,-1,-1], colorSpace='rgb',  blendMode='avg', useFBO=True, units='norm')
 
 # Calibrate pain
 out, V_, maxV            = runCalibration(WIN, props=(.1,.9), debug=DEBUG)
 calibration_data         = pd.DataFrame(out).T.reset_index(level=0)
 calibration_data['PID']  = ID
-calibration_data.columns = ['V', 'rating', 'PID']
 calibration_data.to_csv(f'data/calibration/calibration_{ID}.csv')
 
 print('='*10)

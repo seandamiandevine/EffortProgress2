@@ -23,15 +23,16 @@ def runCalibration(WIN, props=(0.1, 0.9), debug=False):
 	"""
 
 	# Set constants 
-	INTENSITIES = [i/100 for i in list(range(1,200))]    # voltage ramp (0.01V to 2V)
+	INTENSITIES = [i/100 for i in list(range(0,200,2))]  # voltage ramp (0.01V to 2V)
 	COOLDOWN    = 2                                      # cooldown time after shock
 	PAINTIME    = 0.33                                   # time for which signal is sent
+	NBLOCKS     = 3 									 # number of passes
 
 	# Initialize trial components
 	INSTDIR     = 'instructions/calibration_instructions/'
 	INSTPIC     = visual.ImageStim(WIN, image=f"{INSTDIR}Slide1.png")
-	SHOCKBOLT   = visual.ImageStim(WIN, image='stim/bolt.png', pos=(0,0), size=(10,10))
-	TXT         = visual.TextStim(WIN, text='If you think you can tolerate the next shock, tell the experimenter to continue.\n\n\nIf you think you cannot tolerate the next shock, tell the experimenter to stop here.', height=1, pos=(0,0), color='White', wrapWidth=30)
+	SHOCKBOLT   = visual.ImageStim(WIN, image='stim/bolt.png', pos=(0,0), size=(.525,.75))
+	TXT         = visual.TextStim(WIN, text='', height=0.1, pos=(0,0), color='White', wrapWidth=20*0.1)
 	MIN, MAX    = 0, 20
 	SLIDER      = visual.RatingScale(WIN, low=MIN, high=MAX, markerStart=(MIN+MAX)/2, 
 		tickHeight=0, textColor='white', scale=None, showValue=False, lineColor='white', markerColor='DarkRed', 
@@ -64,55 +65,67 @@ def runCalibration(WIN, props=(0.1, 0.9), debug=False):
 
 	WIN.flip()
 	output = {}
-	for t, V in enumerate(INTENSITIES):
-		SHOCKBOLT.draw()
-		WIN.flip()
-                # Give shock
-		if debug:
-			print(f'adminstered shock of {V}V')
-		else:
-                        TDAC.update(V, 0) # on
-                        PORT.setData(PORTNUM)
-                        core.wait(PAINTIME)
-                        TDAC.update(0,0)     # off
-                        PORT.setData(0)
-		core.wait(COOLDOWN)
-
-		# Rating
-		while SLIDER.noResponse:
-			SLIDER.draw()
-			WIN.flip()
-		pain_rating = SLIDER.getRating()
-
-		SLIDER.reset()
-
-		# save
-		output[V] = [pain_rating]
-
-		# Confirm next
+	maxV   = []
+	for b in range(NBLOCKS):
+		TXT.text = f'Round {b+1} of calibration phase.'
 		TXT.draw()
 		WIN.flip()
-		key_press = event.waitKeys(keyList=['return', 'x', 'escape'])
-		if 'escape' in key_press:
-			core.quit()
-
-		if 'x' in key_press:
-                        # subject's stopping point
-                        break
-
-		WIN.flip()
-		core.wait(COOLDOWN)
+		core.wait(2)
+		TXT.text ='If you think you can tolerate the next shock,\ntell the experimenter to continue.\n\n\nIf you think you cannot tolerate the next shock,\ntell the experimenter to stop here.'
 		
-	V_ = [round(p*V,2) for p in props]
+		output[b] = {}
+		for t, V in enumerate(INTENSITIES):
+			SHOCKBOLT.draw()
+			WIN.flip()
+	                # Give shock
+			if debug:
+				print(f'adminstered shock of {V}V')
+			else:
+	                        TDAC.update(V, 0) # on
+	                        PORT.setData(PORTNUM)
+	                        core.wait(PAINTIME)
+	                        TDAC.update(0,0)     # off
+	                        PORT.setData(0)
+			core.wait(COOLDOWN)
 
+			# Rating
+			while SLIDER.noResponse:
+				SLIDER.draw()
+				WIN.flip()
+			pain_rating = SLIDER.getRating()
+
+			SLIDER.reset()
+
+			# save
+			output[b][V] = pain_rating
+
+			# Confirm next
+			TXT.draw()
+			WIN.flip()
+			key_press = event.waitKeys(keyList=['return', 'x', 'escape'])
+			if 'escape' in key_press:
+				core.quit()
+
+			if 'x' in key_press:
+	                        # subject's stopping point
+	                        break
+
+			WIN.flip()
+			core.wait(COOLDOWN)
+		
+		maxV.append(V)	
+		
+	V_ = [round(p*max(maxV),2) for p in props]
 	TXT.text = f'Moving forward, {V_[0]}V and {V_[1]}V shocks will be used throughout the experiment.'
 	TXT.draw()
 	WIN.flip()
 	event.waitKeys(keyList=['return'])
 
-	return output, V_, V
+	return output, V_, max(maxV)
 
-
+# WINSIZE     = [1920, 1080] #if not DEBUG else [1920//1.5, 1080//1.5]
+# WIN         = visual.Window(size=WINSIZE, fullscr=True,allowGUI=False, allowStencil=False,monitor='testMonitor', color=[-1,-1,-1], colorSpace='rgb',  blendMode='avg', useFBO=True, units='norm')
+# runCalibration(WIN, debug=True)
 
 
 

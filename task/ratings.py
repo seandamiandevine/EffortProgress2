@@ -21,16 +21,16 @@ def runRating(WIN, voltages, debug=False):
 
 	# Set constants 
 	NUM_REPS    = 3 if not debug else 1     # number of times each intensity is rated
-	COOLDOWN    = 2     			# cooldown time after shock
-	PAINTIME    = 0.33  			# time for which signal is sent
+	COOLDOWN    = 2     					# cooldown time after shock
+	PAINTIME    = 0.33  					# time for which signal is sent
 	VLIST       = [v for v in voltages for i in range(NUM_REPS)]
 	shuffle(VLIST)    
 
 	# Initialize trial components
 	INSTDIR     = 'instructions/rating_instructions/'
 	INSTPIC     = visual.ImageStim(WIN, image=f"{INSTDIR}Slide1.png")
-	SHOCKBOLT   = visual.ImageStim(WIN, image='stim/bolt.png', pos=(0,0), size=(10,10))
-	TXT         = visual.TextStim(WIN, text='Press ENTER to continue to rate the next shock.', height=1, pos=(0,0), color='White', wrapWidth=30)
+	SHOCKBOLT   = visual.ImageStim(WIN, image='stim/bolt.png', pos=(0,0), size=(.525,.75))
+	TXT         = visual.TextStim(WIN, text='Press ENTER to continue to rate the next shock.', height=.1, pos=(0,0), color='White', wrapWidth=20*0.1)
 	MIN, MAX    = 0, 20
 	SLIDER      = visual.RatingScale(WIN, low=MIN, high=MAX, markerStart=(MIN+MAX)/2, 
 		tickHeight=0, textColor='white', scale=None, showValue=False, lineColor='white', markerColor='DarkRed', 
