@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Informed Consent Form</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+        <link rel="stylesheet" href="css/style.css" type="text/css" />
+        <link rel="icon" href="static/favicon.ico" />
+        <script type="text/javascript">
+            function onexit() {
+              self.close(); // no harm, no foul here
+            }
+        </script>
+		<style>
+			@media print {
+				body * {
+					visibility: hidden;
+				}
+				.legal, .legal * {
+					visibility: visible;
+				}
+				.legal {
+					position: absolute;
+					left: 0;
+					top: 0;
+					overflow:visible;
+				}
+			}
+		</style>
+    </head>
+    <body>
+        <div id="container-consent">
+            <div id="consent">
+                <h1>Informed Consent</h1>
+                <hr />
+                <div class="legal well">
+           <h2><b>Study title:</b>Psychology Game</h2>
+                   <h3><b>STUDY PURPOSE</b></h3>
+                   <p>
+                    The purpose of this study is to better understand how we make decisions about stimuli we see.
+                    In this experiment, you will see a series of words in different colors.
+                   </p>
+                  <h3><b>Foreseeable risks or discomforts</b></h3>
+                  <p>
+                   The risks and discomforts associated with this study are minimal.
+                 </p>
+                 <h3><b>CONFIDENTIALITY</b></h3>
+                 <p>
+                   All information related to personal identity will remain confidential and all answers will be stored on a protected computer server.
+                   Once a participant has been compensated, their Prolific account number will be stripped from the dataset.
+                   At this point, the researcher will have no way to link an Prolific account number to the participant identity.
+                   Withdrawal from the study will not be possible after this point.
+                   Results will be disseminated at conferences and journals only as group ratings.
+                 </p>
+                 <h3><b>COMPENSATION</b></h3>
+                 <p>
+                   If you choose to participate in the study, it will take about 30-60 minutes to complete, you will be compensated up to £7.00 through your Prolific account, <b>depending on your choices during the experiment</b>.
+                   <br><br>
+                   <b>**Your participation in this study is completely voluntary.**</b>
+                   <br><br>
+                   You can refuse to make a response, at any time, can quit the study without any penalty.
+                 </p>
+                   <h3><b>CONTACT INFORMATION</b></h3>
+                   <p>
+                    If you have any questions or comments about this research, you may contact Dr. Ross Otto, Department of Psychology at McGill University at rotto@psych.mcgill.ca.
+                    If you have any questions or concerns regarding your rights or welfare as a participant in this research study, please contact the McGill Ethics Officer at 1-514-398-6831 or lynda.mcneil@mcgill.ca. This study is approved by the McGill Ethics Review board (REB #398-0217).
+                 </p>
+
+                  <p>
+                      I have read and understand this form and consent to the research as it is described to me.
+                      If you consent to participate, please click "I agree" below.
+                 </p>
+                    <button type="button" class="btn btn-default btn-sm" onClick="window.print();">
+                    <span></span> Print a copy of this
+                    </button>
+                </div>
+
+                <hr />
+                <h4>Do you understand and consent to these terms?</h4>
+                <br />
+
+                <center>
+                    <button type="button" class="btn btn-primary btn-lg" id="agree">
+                    <span></span> I agree
+                    </button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button type="button" class="btn btn-danger btn-lg" onClick="window.open('', '_self', ''); window.close();">
+                    <span></span> I do not agree. Clicking this closes the window.
+                    </button>
+                </center>
+
+            </div>
+        </div>
+    </body>
+</html>

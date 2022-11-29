@@ -1,0 +1,144 @@
+$N
+[1] 42
+
+$mage
+[1] 20
+
+$sdage
+[1] 1.581139
+
+$sexes
+[1] 0.91245
+
+$Nexc
+[1] -2
+
+$Ntrials
+
+  52   53   54   55   56   57   58   59   60   61   62   63   64   65   66   67   68   69   70   71   72 
+1623 1334 1067 1131 1061 1206 1082 1083 1208 2124 1064 1040 1104 1118 1337 1087 1112 1044 1118 1205 1125 
+  73   74   75   76   77   78   79   80   81   82   83   84   85   86   87   88   89   90   91   92   93 
+1185 1267 1092 1131 2064 1174 1598 2593 1056 1770 1256 1106 1041 1025 1081 1274 1136 1136 1060 1274 1155 
+
+$maxTok
+  52   53   54   55   56   57   58   59   60   61   62   63   64   65   66   67   68   69   70   71   72 
+0.00 0.84 1.74 1.52 1.56 1.52 1.56 1.54 1.14 0.00 1.74 1.74 1.74 1.16 0.66 1.36 1.56 1.56 1.36 0.94 1.16 
+  73   74   75   76   77   78   79   80   81   82   83   84   85   86   87   88   89   90   91   92   93 
+1.68 1.08 1.56 1.54 0.00 0.94 0.20 0.00 1.56 0.20 1.28 1.72 1.56 1.74 1.56 1.26 1.54 1.52 1.74 0.52 1.16 
+
+$instQ
+52 53 54 55 56 57 58 59 60 61 62 63 64 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 
+ 5  4  3  5  5  5  5  4  5  5  5  5  5  4  4  4  5  5  5  4  4  5  5  5  5  5  5  4  4  5  4  3  4  3  5 
+87 88 89 90 91 92 93 
+ 5  4  5  3  5  4  4 
+
+$Oacc
+       52        53        54        55        56        57        58        59        60        61 
+0.5914972 0.7503748 0.9119025 0.8541114 0.9085768 0.8349917 0.9057301 0.9168975 0.7947020 0.4519774 
+       62        63        64        65        66        67        68        69        70        71 
+0.9050752 0.9230769 0.8795290 0.8586762 0.7180254 0.8886845 0.8678058 0.9233716 0.8729875 0.8082988 
+       72        73        74        75        76        77        78        79        80        81 
+0.8986667 0.8430380 0.7884767 0.8791209 0.8753316 0.4651163 0.8270869 0.6007509 0.3702275 0.9100379 
+       82        83        84        85        86        87        88        89        90        91 
+0.5423729 0.7802548 0.8987342 0.9289145 0.9365854 0.8945421 0.7621664 0.8494718 0.8750000 0.9122642 
+       92        93 
+0.7919937 0.8476190 
+
+$times
+      52       53       54       55       56       57       58       59       60       61       62 
+22.78630 24.89262 17.61778 28.91357 19.97636 22.95847 18.97739 18.83703 21.18915 37.40988 24.88479 
+      63       64       65       66       67       68       69       70       71       72       73 
+21.42230 23.92518 19.21173 23.47060 22.47688 16.33488 19.42857 24.40470 29.24287 27.52344 26.99142 
+      74       75       76       77       78       79       80       81       82       83       84 
+23.74482 23.86508 23.88751 34.20693 21.25777 24.86978 41.39800 22.21847 35.33037 28.19816 24.48903 
+      85       86       87       88       89       90       91       92       93 
+16.67912 18.52745 19.78667 29.02663 30.19958 22.00322 24.43965 26.52217 31.39972 
+
+$comments
+ [1] "NO"                                                                                                                                                                                                                                                                                                        
+ [2] "As I was doing the game more and more, the images started to mix and I was seeing weird shapes, like olives or switches going up and down (as the shape changed position) which confused my mind a lot to pick the odd one out. also seeing the same shapes for a long and fast time started to confuse me"
+ [3] "No"                                                                                                                                                                                                                                                                                                        
+ [4] "none"                                                                                                                                                                                                                                                                                                      
+ [5] "It got more difficult as time went on and anytime I made a mistake I would get flustered and  fall out of rhythm. "                                                                                                                                                                                        
+ [6] "after a while it becomes nonconscious and you don't even realize what you're pressing"                                                                                                                                                                                                                     
+ [7] "no"                                                                                                                                                                                                                                                                                                        
+ [8] "i'd rather not see the money value that I earned since the value is arbitrary to my performance. I tried spamming the same button to eventually get pass a level but turns out I was also punished for getting too many answers wrong, which I don't remember to be explicitly mentioned in the rules"     
+ [9] "No"                                                                                                                                                                                                                                                                                                        
+[10] "no"                                                                                                                                                                                                                                                                                                        
+[11] "no"                                                                                                                                                                                                                                                                                                        
+[12] "no"                                                                                                                                                                                                                                                                                                        
+[13] "In some of the rounds I was losing focus by the end of it due to the repetitiveness of the shapes, but for most I was able to stay focused."                                                                                                                                                               
+[14] "I don't"                                                                                                                                                                                                                                                                                                   
+[15] "no"                                                                                                                                                                                                                                                                                                        
+[16] "It's fun"                                                                                                                                                                                                                                                                                                  
+[17] "no thank you "                                                                                                                                                                                                                                                                                             
+[18] "no"                                                                                                                                                                                                                                                                                                        
+[19] "I am so curious as to what is being tested here :)"                                                                                                                                                                                                                                                        
+[20] "N/A"                                                                                                                                                                                                                                                                                                       
+[21] "change the color of the circles because my eyes got tired when seeing the same blue background "                                                                                                                                                                                                           
+[22] "The game is very fast and seemed to glitch sometimes.  I felt like when I fall behind the speed, it was very hard to catch back the tempo.  The speed should have been a bit sloer maybe, in order to let people concentrate."                                                                             
+[23] "no"                                                                                                                                                                                                                                                                                                        
+[24] "no"                                                                                                                                                                                                                                                                                                        
+[25] "nicer than the pain study!"                                                                                                                                                                                                                                                                                
+[26] "it was quite fast so difficult to choose the right one all the time"                                                                                                                                                                                                                                       
+[27] "I tried to see if there was a pattern but when i tried o detect one it made me mess up more so i stuck to identifying the single one out. It also became so natural that i started having thoughts while still completing the task"                                                                        
+[28] "I just gave up after a while"                                                                                                                                                                                                                                                                              
+[29] "no"                                                                                                                                                                                                                                                                                                        
+[30] "no"                                                                                                                                                                                                                                                                                                        
+[31] "no"                                                                                                                                                                                                                                                                                                        
+[32] "n/a"                                                                                                                                                                                                                                                                                                       
+[33] "This was really fun !"                                                                                                                                                                                                                                                                                     
+[34] "no"                                                                                                                                                                                                                                                                                                        
+[35] "No"                                                                                                                                                                                                                                                                                                        
+[36] "no"                                                                                                                                                                                                                                                                                                        
+[37] "I got confused when the shapes would appear at a faster pace than usual (when they were \"blinking\")"                                                                                                                                                                                                     
+[38] "No"                                                                                                                                                                                                                                                                                                        
+[39] "no"                                                                                                                                                                                                                                                                                                        
+[40] "it was harder to focus towards the end"                                                                                                                                                                                                                                                                    
+[41] "no"                                                                                                                                                                                                                                                                                                        
+[42] "no"                                                                                                                                                                                                                                                                                                        
+
+$strategy
+ [1] "NO"                                                                                                                                                                                                                                                                             
+ [2] "Trying to find the two shapes that were the same"                                                                                                                                                                                                                               
+ [3] "Looking at the images like crescent moon, rather than just looking at the white circles made it easier and faster to distinguish between shapes"                                                                                                                                
+ [4] "I took a few seconds break between every run (drinking water, taking a few steps around the room, breathing in and out) because when I didn't, all the shapes started blending together."                                                                                       
+ [5] "I tried to focus on the white circles and line them up to see which one was the odd one out."                                                                                                                                                                                   
+ [6] "no"                                                                                                                                                                                                                                                                             
+ [7] "not really, but i keep an eye on the ones that changed"                                                                                                                                                                                                                         
+ [8] "when the middle one is lower, it looks like a mouse. I also took a some breaks when I noticed a dip in my performance, since I feel that this is a very impulse/intuition based task and that sense is worn out if I concentrate for too long"                                  
+ [9] "No"                                                                                                                                                                                                                                                                             
+[10] "not really, but i keep an eye on the ones that changed"                                                                                                                                                                                                                         
+[11] "Relaxing the eyes during task, taking time between breaks "                                                                                                                                                                                                                     
+[12] "No"                                                                                                                                                                                                                                                                             
+[13] "I took a short break between each round to just look away from the screen, I also used the same hand and fingers each time for the keys so that I didn't get confused about that part. Lastly I tried to space the time of my guesses evenly so I didn't get caught up on them."
+[14] "No"                                                                                                                                                                                                                                                                             
+[15] "no"                                                                                                                                                                                                                                                                             
+[16] "keep the clicking rhythm steady"                                                                                                                                                                                                                                                
+[17] "looking at the white balls in a line to see which one stood out"                                                                                                                                                                                                                
+[18] "No"                                                                                                                                                                                                                                                                             
+[19] "not really, just tried to notice the one that changed "                                                                                                                                                                                                                         
+[20] "I would alternate between using my right hand only (using the index, middle, and ring finger), and using both my hands (left index finger and right middle and ring fingers). "                                                                                                 
+[21] "try to focus on the 3 circles at the same time and quicky scan to detect the normal VS odd pattern"                                                                                                                                                                             
+[22] "Accuracy is important as you will finish the task earlier if you get the selections right"                                                                                                                                                                                      
+[23] "taking a break between the rounds "                                                                                                                                                                                                                                             
+[24] "Look at the three shapes at a single glance, pick out the odd one."                                                                                                                                                                                                             
+[25] "I'd take a deep breath and wouldn't try to catch up if I made a mistake, I'd just focus on what's on the screen currently and continue from there."                                                                                                                             
+[26] "i tried to look at which ball was the odd one and took some breaks"                                                                                                                                                                                                             
+[27] "No"                                                                                                                                                                                                                                                                             
+[28] "no"                                                                                                                                                                                                                                                                             
+[29] "not really, but i keep an eye on the ones that changed"                                                                                                                                                                                                                         
+[30] "no"                                                                                                                                                                                                                                                                             
+[31] "not really, but i keep an eye on the ones that changed"                                                                                                                                                                                                                         
+[32] "I tried to just see if the middle ball corresponded to one of the other ones. I also found that sitting closer to the screen helped a little. "                                                                                                                                 
+[33] "looking at the center ball and using my peripheral vision to distinguish changes in patterns of the alignment of the other balls "                                                                                                                                              
+[34] "not really"                                                                                                                                                                                                                                                                     
+[35] "No"                                                                                                                                                                                                                                                                             
+[36] "I was mostly looking in the middle"                                                                                                                                                                                                                                             
+[37] "Look at the odd white spot"                                                                                                                                                                                                                                                     
+[38] "If I noticed I was getting too many wrong from pressing too quickly on the keys, I would take a quick break and I would take more time between each key press to ensure I focused on which shape was the odd one out"                                                           
+[39] "I tried not to look at the money incentive number, and also tried to take 30 second breaks within each round to refresh my eyes"                                                                                                                                                
+[40] "No"                                                                                                                                                                                                                                                                             
+[41] "to try and align white dots"                                                                                                                                                                                                                                                    
+[42] "No"                                                                                                                                                                                                                                                                             
+

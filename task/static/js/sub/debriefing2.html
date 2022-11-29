@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>Debriefing</title>
+        <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
+        <link rel="stylesheet" href="css/style.css" type="text/css" />
+        <link rel="icon" href="/static/favicon.ico" />
+        <script type="text/javascript">
+            function onexit() {
+              self.close(); // no harm, no foul here
+            }
+        </script>
+		<style>
+			@media print {
+				body * {
+					visibility: hidden;
+				}
+				.legal, .legal * {
+					visibility: visible;
+				}
+				.legal {
+					position: absolute;
+					left: 0;
+					top: 0;
+					overflow:visible;
+				}
+			}
+		</style>
+    </head>
+    <body>
+        <div id="container-debrief">
+            <h1>Debriefing</h1>
+
+        <div id="debriefingtext">
+            <div id="debrief">
+                <p>Thank you for your participation in our study!  Your anonymous data makes an
+        important contribution to our understanding of cognitive effort. </p>
+
+        <p>The purpose of this study was to invesigate how progress contributes to
+       how people view cognitive effort. Cognitive effort is usually thought of as
+       the amount of mental energy needed to accomplish some task. Generally speaking,
+       effort is usually thought of as aversive -- people tend to avoid spending it in most
+       day-to-day tasks. However, we still use effort all the time because it usually confers some benefit.
+       For example, we may spend a lot of mental effort studying for an exam, because doing so will secure us
+      a good grade. </p>
+
+    <p>In this study, we hypothesized that one such case where people will invest effort is when they are close to a goal. That is, we hypothesized that when people are closer to a goal (here, the points), they would work mentally harder, which would be captured in their behaviour while responding to the words/colours. </p>
+
+        <p>If you have any questions about this research, you may contact the
+        principal investigator, Sean Devine (seandamiandevine@gmail.com).</p>
+        </div>
+                    <button type="button" class="btn btn-default btn-sm" onClick="window.print();">
+                    <span></span> Print a copy of this
+                    </button>
+                </div>
+
+                <hr />
+                <h4>Do you understand and consent to these terms?</h4>
+                <br />
+
+                <center>
+                    <button type="button" class="btn btn-primary btn-lg" id="agree">
+                    <span></span> I agree
+                    </button>
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <button type="button" class="btn btn-danger btn-lg" onClick="window.open('', '_self', ''); window.close();">
+                    <span></span> I do not agree. Clicking this closes the window.
+                    </button>
+                </center>
+
+            </div>
+        </div>
+    </body>
+</html>
