@@ -87,7 +87,7 @@ capture.output(desc_pre,file='out/descriptives_pre.txt')
 
 dat = dat[!dat$subject %in% rmv,]
 length(unique(dat$subject))
-write.csv(dat, 'ddms/data_exc.csv') # for hddm
+# write.csv(dat, 'ddms/data_exc.csv') # for hddm
 
 # Descriptives ------------------------------------------------------------
 

@@ -67,7 +67,7 @@ abline(v=1/3, lty=2, lwd=2)
 dev.off()
 
 dat = dat[!dat$subject %in% rmv,]
-write.csv(dat, 'ddms/data_exc.csv') # for hddm
+# write.csv(dat, 'ddms/data_exc.csv') # for hddm
 
 
 # Descriptives ------------------------------------------------------------
